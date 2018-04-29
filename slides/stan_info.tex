@@ -65,20 +65,17 @@
 \begin{frame}{Repeated game with standard information}
     \metroset{block=fill}
     \begin{block}{Definition}
-        A {\color{green}standard repeated game} also sometimes called a {\color{green}supergame} is an infinitely repeated game where a same game $\Gamma$ is repeated infinitely and where at each round $k$, every player knows all the players past moves. And there exist only one possible state of nature.
-
-	\begin{align*}
-		&p(d,...,d,\theta | d, \theta) = 1 \quad \forall d \in D \\
-		&|\Theta| = 1 \\
-		& S_i = \bigtimes_{j \in N} D_j \quad \forall i 
-	\end{align*}
+        A \textbf{standard repeated game} is a repeated game in which there is only one state of
+        possible state of nature
+		$$|\Theta| = 1,$$
+        the players know all of each other's past moves
+        $$S_i = \bigtimes_{j \in N} D_j \quad \forall,$$
+        and
+		$$p(d,...,d,\theta | d, \theta) = 1 \quad \forall d \in D.$$
     \end{block}
 \end{frame}
 
-\begin{frame}{Repeated game with standard information}
-	\centering
-	\includegraphics[width=0.7\linewidth]{img/std.png}
-\end{frame}
+
 \begin{frame}{Example : the game of Chicken}
     \begin{exampleblock}{Example}
         Consider the game of Chicken in normal form
@@ -187,14 +184,29 @@
     }
 \end{frame}
 
-\begin{frame}{Take home message \#}
-\metroset{block=fill}
-    \begin{block}{Take-home-message \#}
-        A {\color{green}repeated game with standard information} is a game with only one state that is repeated an infinite amount of time.
-        
-        A player can choose different strategies for a single game. In function of the strategy chosen by each player we can compute if the game is a \textbf{sub-game perfect}. To do this we compute the $\delta$-discounted average payoff in case of deviation and no deviation. If we can find a $\delta$ for which the first one is smaller than the second one. It is sub-game perfect.
-        
-        
-    \end{block}
+\begin{frame}{Take home message \#6}
+    \metroset{block=fill}
 
+    \begin{block}{Take-home-message \#6}
+        \vspace{0.2cm}
+        \begin{columns}
+            \begin{column}{0.65\textwidth}
+                A \textbf{repeated game with standard information} is a repeated game where
+                \begin{itemize}
+                    \item there is {\color{green}only one possible state of nature}
+                    \item the players {\color{green}know all of each other's past moves}
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.2\textwidth}
+                \begin{center}
+                    \includegraphics[width=0.7\linewidth]{img/std.png}
+                \end{center}
+            \end{column}
+        \end{columns}
+
+        \vspace{0.5cm}
+        Depending on the value of the discount factor $\delta$, several strategies might constitute
+        an equilibrium: \textit{tit-for-tat}, \textit{getting-even}, \textit{grim}, etc.
+        However, these equilibria might not always be subgame perfect.
+    \end{block}
 \end{frame}
