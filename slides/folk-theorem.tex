@@ -1,15 +1,13 @@
-
-\begin{frame}{Folk Theorem}
-    \textbf{Strategy in infinitely-repeated game}\\
-    \begin{itemize}
-        \item Choice of action at every decision point
-        \item No finite set of pure strategies!
-        \item Nash theorem doesn't apply anymore\\
-        $\rightarrow$ We need new rules
-    \end{itemize}
+\begin{frame}{Strategy in Infinitely Repeated Games}
+    \begin{alertblock}{Challenges}
+        \begin{itemize}
+            \item Choice of action at every decision point
+            \item No finite set of pure strategies!
+            \item Nash theorem doesn't apply anymore
+        \end{itemize}
+        $\rightarrow$ we need new rules.
+    \end{alertblock}
 \end{frame}
-
-
 
 \begin{frame}{Enforceability and feasability}
     \begin{itemize}
@@ -47,6 +45,7 @@
         \end{enumerate}
     \end{block}
 \end{frame}
+
 \note{
     \begin{block}{Folk Theorems}
         \begin{itemize}
@@ -57,7 +56,6 @@
     \end{block}
 }
 
-
 \begin{frame}{Interpretation of the Folk theorem}
     \begin{exampleblock}{What does it mean?}
         \begin{itemize}
@@ -67,21 +65,13 @@
             is the payoff profile of a Nash equilibrium 
         \end{itemize}
     \end{exampleblock}
+    
+    \begin{exampleblock}{Consequences}
+        Apparition of new Nash Equilibria for certain games (e.g. Prisoner's Dilemma).
+    \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Folk Theorem}
-    \textbf{Consequences}\\
-    \begin{itemize}
-        \item Interesting consequences: apparition of new Nash equilibrium's for certain games
-        \item Example: prisoner's dilemna
-        \begin{itemize}
-            \item If game goes on long enough (proba of 1 more turn $\rightarrow 1$), cooperation of both
-            players becomes a Nash equilibrium
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Folk Theorem}
+\begin{frame}{Folk Theorem: application to the Prisoner's Dilemma}
     \begin{exampleblock}{Example}
         Consider the Prisoner's Dilemma in normal form.
         \begin{table}
@@ -97,16 +87,17 @@
 \end{frame}
 
 \note{
-    Simply prove that cooperation is feasible and enforceable:\\
+    Simply prove that cooperation, $(-1, -1)$, is feasible and enforceable:
     \begin{itemize}
-        \item Enforceability
-            $v_1=\min_{s_{-1}\in S_{-1}} \max_{s_{1}\in S_{1}} u_1(s_{-1},s_1) =-3$\\
-            $v_2=\min_{s_{-2}\in S_{-2}} \max_{s_{2}\in S_{2}} u_2(s_{-2},s_2) =-3$\\
-            $r_1=1\geq -3$,$r_2=1\geq -3 \rightarrow$ enforceable \\
-        \item Feasibility
-            $\alpha_{(c,C)}= 1$, rest $\alpha=0 \rightarrow$ feasible
+        \item enforceability:
+        $$v_1 = \min_{d_{-1}\in D_{-1}} \max_{d_{1}\in D_{1}} u_1(d_{-1}, d_1) =-3$$
+        $$v_2 = \min_{d_{-2}\in D_{-2}} \max_{d_{2}\in D_{2}} u_2(d_{-2},d_2) =-3$$
+        $$u_1 = -1 \geq -3$$
+        $$u_2 = -1 \geq -3$$
+        \item feasibility:
+        $\alpha_{(C,c)}= 1$ and $\alpha = 0$ for other moves.
     \end{itemize}
-    By Folk theorem $\rightarrow$ Nash equilibrium
+    By the Folk theorem, $(-1, -1)$ (i.e. cooperation) is achievable under a Nash equilibrium.
 }
 
 \begin{frame}{Take-home message \#7}
