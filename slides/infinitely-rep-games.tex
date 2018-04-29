@@ -22,15 +22,10 @@
 \end{frame}
 
 \note{
-    Draw a table on the blackboard and collect the actions/outcomes of each pair
-    of students after each round.
+    Stress that this game will be used during the whole presentation so that they should
+    try to remember it.
 
-    At the end, quickly compare the result. Ask students to motivate their strategy
-    choice (especially if it differs from what a rational player would do).
-
-    In theory, student should more cooperate than in the previous case. However,
-    because people already tend to cooperate in the finitely repeated case, the
-    difference might not be significant on the small sample we have.
+    Ask the audience if they would change their strategy w.r.t. the previous game.
 }
 
 \begin{frame}{Can a cooperative strategy be a Nash Equilibrium?}
@@ -39,7 +34,7 @@
         then defect forever} and assume both players play accordingly.
     \end{block}
 
-    \begin{exampleblock}{Is it a Nash Equilibrium?}
+    \begin{exampleblock}{For this to be a Nash Equilibrium...}
         Neither player can expect to gain by any unilateral deviation at any point
         in time (i.e., for any history of past moves).
         
@@ -77,15 +72,14 @@
 }
 
 \note{
-    If one of the players deviate and decide to defect, he will get 0 first and then -4 forever because the
+    If one of the players deviate and decide to defect, he will get 0 first and then -3 forever because the
     other player will always defect to punish him, the deviating player will then get an expected total future
     payoff of
     \begin{align*}
-        0 + \sum_{k=2}^{\infty} (-3k)\cdot p(k) &= -\frac{1}{2} \sum_{k=2}^{\infty} k\left(\frac{5}{6}\right)^{k-1}\\
-                                                &= -\frac{1}{2} \frac{6}{5} \sum_{k=2}^{\infty} k\left(\frac{5}{6}\right)^k \\
-                                                &= -\frac{3}{5} \left(-\frac{5}{6} + \sum_{k=1}^{\infty} k\left(\frac{5}{6}\right)^k \right) \\
-                                                &= -\frac{3}{5} \left(-\frac{5}{6} + 30 \right) \\
-                                                &= -\frac{3}{5} \frac{175}{6} = -17.5 < -6.
+        0 + \sum_{k=1}^{\infty} (-3)(k-1)\cdot p(k)
+        &= -\frac{1}{2} \sum_{k=2}^{\infty} (k-1)\left(\frac{5}{6}\right)^{k-1} \\
+        &= -\frac{1}{2} \sum_{k'=1}^{\infty} k'\left(\frac{5}{6}\right)^{k'} \\
+        &= -15 < -6.
     \end{align*}
 }
 
