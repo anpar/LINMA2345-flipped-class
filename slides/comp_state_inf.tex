@@ -100,6 +100,13 @@
     \pause
     The Grim strategy \textbf{depends on past move} and not on the actual state. It
     is not stationnary.
+    \pause
+    However, \textit{we can make this strategy stationary by using an equivalent model with larger
+    state space}
+    \begin{itemize}
+        \item \textbf{Ac} : Active plays continuing (nobody has chosen \textit{defect} in the past).
+        \item \textbf{Ad} : Active plays continuing (someone has chosen \textit{defect} in the past).
+    \end{itemize}
 \end{frame}
 
 \note{
@@ -107,122 +114,136 @@
 	
 	Il faut connaître l'état pour etre stationnaire, si on ne connait pas l'état on
     ne pourra pas être stationnaire.
+
+    At this point, update the first model of the RPD that was on the blackboard with this new
+    augmented one.
 }
 
 \begin{comment}
 \begin{frame}{Small example to understand complete state information}
-\textit{Consider the prisoner's dilemma game in a setting where player make decision based only on the last move of they adversary.} \note{This is contrary to decision theory to make this assumption. Some strategies can still be analysed in that setting. (tit-for-tat)}
+    \textit{Consider the prisoner's dilemma game in a setting where player make decision
+    based only on the last move of they adversary.}
+    
+    \note{This is contrary to decision theory to make this assumption. Some strategies can
+    still be analysed in that setting. (tit-for-tat)}
 
-\pause
-$\Rightarrow$ 4 different states : $\Theta = \{([C,c]), ([C,d]), ([D,c]), ([D,d])\}$
+    \pause
+    $\Rightarrow$ 4 different states : $\Theta = \{([C,c]), ([C,d]), ([D,c]), ([D,d])\}$
 
-\pause
-If both player play the \textbf{tit-for-tat} strategy. {\color{green} We can represent } the game like that:
+    \pause
+    If both player play the \textbf{tit-for-tat} strategy. {\color{green} We can represent } the game like that:
 
-\begin{minipage}{0.7\linewidth}
-\includegraphics[width=0.9\linewidth]{img/titfortat.png}
-\end{minipage}
-\begin{minipage}{0.29\linewidth}
-	\begin{itemize}
-		\item Plain arrow if player 1 play tit-for-tat.
-		\item Dashed arrow if player 1 play the opposite.
-		\item Player 2 play tit-for-tat
-	\end{itemize}
-\end{minipage}
+    \begin{minipage}{0.7\linewidth}
+    \includegraphics[width=0.9\linewidth]{img/titfortat.png}
+    \end{minipage}
+    \begin{minipage}{0.29\linewidth}
+        \begin{itemize}
+            \item Plain arrow if player 1 play tit-for-tat.
+            \item Dashed arrow if player 1 play the opposite.
+            \item Player 2 play tit-for-tat
+        \end{itemize}
+    \end{minipage}
 \end{frame}
 \end{comment}
 
-\begin{frame}{How to analyse a game with complete state information ?}
-\textbf{Goal of the analyse:} Determine if the game is worth or not .
+\begin{frame}{Stationary Equilibria (1)}
+    \begin{itemize}
+        \item $\nu_i(\tau, \theta)$ is the expected $\delta$-discounted average for player $i$
+        \begin{itemize}
+            \item if players plan to use the stationary strategy profile $\tau$, and 
+            \item the initial state of nature is $\theta$.
+        \end{itemize}
+        \item $Y_i(\tau, d_i, v_i, \theta, \delta)$ is the expected $\delta$-discounted average for
+        player $i$
+        \begin{itemize}
+            \item if every players plan to implement $\tau$ excepts player $i$ that plays $d_i$, and
+            \item the initial state of nature is $\theta$.
+        \end{itemize}
+    \end{itemize}
 
-Let $\nu_i$ be the expected $\delta$-discounted average payoff for player $i$. If player $i$ plan to play a stationary strategy,  and the state of nature at round 1 is $\theta$, the expected $\delta$-discounted average payoff for player $i$ is :
-\begin{small}
-\begin{eqnarray}
-Y_i(\tau, d_i, \nu_i, \theta, \delta) &=&  \sum_{d_i \in D_i} \left( \prod_{j \in N-i} \tau_j(d_j|\theta) \right) \\ && \cdot  \left(  (1-\delta) u_i(d,\theta) + \delta \sum_{\hat{\theta} \in \Theta} \sum_{s \in S} p(s,\hat{\theta} |d,\theta) \nu_i (\hat{\theta}) \right) \label{eq:comp1}
-\end{eqnarray}  
-\end{small}
-
+    \begin{small}
+        \begin{eqnarray}
+            Y_i(\tau, d_i, \nu_i, \theta, \delta) &=&
+            \sum_{d_i \in D_i} \left( \prod_{j \in N-i} \tau_j(d_j|\theta) \right) \nonumber \\
+            && \cdot  \left(  (1-\delta) u_i(d,\theta) + \delta \sum_{\hat{\theta} \in \Theta}
+            \sum_{s \in S} p(s,\hat{\theta} |d,\theta) \nu_i (\hat{\theta}) \right)
+        \end{eqnarray}  
+    \end{small}
 \end{frame}
 
+\begin{frame}{Stationary Equilibria (2)}
+    When every players plays according to $\tau$ :
 
-\begin{frame}{Analyze the game with complete state information}
-When every players plays according to $\tau$ :
+    \begin{small}
+        \begin{align}
+            \nu_i(\theta, \tau) &= \sum_{d_i \in D_i} \tau_i(d_i|\theta) \cdot
+            Y_i(\tau, d_i, \nu_i, \theta, \delta) \label{eq:comp1} \\
+            &= \text{max}_{d_i \in D_i} Y_i(\tau, d_i, \nu_i, \theta, \delta)
+            \label{eq:comp2}
+        \end{align}
+    \end{small}
 
-\begin{small}
-\begin{align}
-\nu_i(\theta, \tau) &=   \sum_{d_i \in D_i} \tau_i(d_i|\theta) \cdot Y_i(\tau, d_i, \nu_i, \theta, \delta)\\
-&= \text{max}_{d_i \in D_i} Y_i(\tau, d_i, \nu_i, \theta, \delta) \label{eq:comp2}
-\end{align}
-\end{small}
-
-\textbf{\color{green} Interpretation}
-
-\begin{itemize}
-	\item $Y_i$ is the expected $\delta$-discounted average payoff of player $i$ when the state of nature is $\theta$.
-	\item $\tau_i$ is the probability that the move $d_i$ is chosen.
-	\item $\Rightarrow$ $\nu_i$ is then the expected $\delta$-discounted average payoff of player $i$ when players plays according to $\tau$
-\end{itemize}
+    \begin{exampleblock}{Interpretation}
+        \begin{itemize}
+            \item $Y_i$ is the expected $\delta$-discounted average payoff of player $i$ when the
+            state of nature is $\theta$.
+            \item $\tau_i$ is the probability that the move $d_i$ is chosen.
+            \item $\Rightarrow$ $\nu_i$ is then the expected $\delta$-discounted average payoff of
+            player $i$ when players plays according to $\tau$
+        \end{itemize}
+    \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Theorem : Equilibrium of the repeated game with standard information}
-\metroset{block=fill}
-\begin{block}{Theorem 7.1 (numeration from Myreson's book)}
-	Given a repeated game with complete state information and bounded payoffs, and given a profile of stationary strategies $\tau$, if there exists a bounded vector $\nu = (\nu_i(\theta))_{\theta \in \Theta, i \in N}$ such that equations (\ref{eq:comp1}) and (\ref{eq:comp2}) are satisfied for every player $i$, then $\tau$ is an equilibrium of the repeated game with the $\delta$-discounted average payoff for player $i$ in the repeated game when the initial state of nature is $\theta$.
-\end{block}
-
-\pause
-
-
+\begin{frame}{Stationary Equilibria: theorem}
+    \metroset{block=fill}
+    \begin{block}{Theorem 7.1 (from Myeson's book)}
+	    Given a repeated game with complete state information and bounded payoffs, and given a
+        profile of stationary strategies $\tau$, if there exists a bounded vector
+        $\nu = (\nu_i(\theta))_{\theta \in \Theta, i \in N}$ such that equations (\ref{eq:comp1})
+        and (\ref{eq:comp2}) are satisfied for every player $i$, then $\tau$ is an equilibrium
+        of the repeated game with the $\delta$-discounted average payoff criterion. In this
+        equilibrium, $\nu_i(\theta)$ is the expected $\delta$-discounter average payoff for player
+        for player $i$ in the repeated game when the initial state of nature is $\theta$.
+    \end{block}
 \end{frame}
 
-\begin{frame}{Example with the prisoner's dilemma}
-\textit{Consider the prisoner's dilemma where player $i$ plays the \textbf{grim} strategy.}
-
-\pause
-We can represent this game with two different state : 
-\begin{itemize}
-	\item \textbf{1a} : Active plays continuing (Nobody has chosen \textit{defect} in the past)
-	\item \textbf{1b} : Active plays continuing (Someone has chosen \textit{defect} in the past)
-\end{itemize}
-
-\pause
-This strategy is stationary with
-$$ \tau_i(c|1a) = 1 \qquad \tau_i(d|1b) = 1$$
-\pause
-\textbf{\color{green}Using the theorem, compute the value of $\delta$ for which it is not worth to defect.}
-\pause
-
-\begin{small}
-\begin{align*}
-	\nu_i(1a) &= (1-\delta)(-1) + \delta \left( \frac{5}{6} \nu_i(1a) + \frac{1}{6} \nu_i(0) \right) \geq (1-\delta)0 + \delta \left( \frac{5}{6} \nu_i(1b) + \frac{1}{6} \nu_i(0) \right) \\
-	\nu_i(1b) &= (1-\delta)(-3) + \delta \left( \frac{5}{6} \nu_i(1b) + \frac{1}{6} \nu_i(0) \right) \geq (1-\delta)(-4) + \delta \left( \frac{5}{6} \nu_i(1b) + \frac{1}{6} \nu_i(0) \right)	\\
-	\nu_i(0) &= (1-\delta) 0 + \delta \nu_i(0)
-\end{align*}
-$$ \Rightarrow \delta \geq \frac{2}{5} $$
-\end{small}
+\begin{frame}{Back to the Prisoner's Dilemma with the dice roll}
+    \textit{Consider the Prisoner's Dilemma with the dice roll between each round
+    and assume players are playing according to the \textbf{Grim} strategy.}
+   
+    \vspace{0.5cm}
+    In our augmented state space model, this strategy is stationary and can be written as
+    $$\tau_i(c|Ac) = 1 \qquad \tau_i(d|Ad) = 1.$$
+    
+    \vspace{1cm}
+    \textbf{\color{green}Using the theorem, compute the value of $\delta$ for which this startegy
+    is an equilibrium.}
+\end{frame}
 
 \note{
-Prisoner's Dilemma in normal form : 
-\begin{table}
-            \begin{tabular}{c|cc}
-                & {\color{red}$a_2$}    & {\color{red}$b2$} \\
-                \hline
-                {\color{green}$a_1$}    & \payoff{-1}{-1}   & \payoff{-4}{0} \\
-                {\color{green}$b_1$}    & \payoff{0}{-4}    & \payoff{-3}{-3} 
-            \end{tabular}
-            \caption{Prisoner's dilemma in normal form}
-        \end{table}
+    On the blackboard (the table of the PD will still be on the blackboard to help)
+    \begin{small}
+        \begin{align*}
+            \nu_i(Ac) &= (1-\delta)(-1) + \delta \left( \frac{5}{6} \nu_i(Ac) + \frac{1}{6} \nu_i(S) \right) \\
+            &\geq (1-\delta)0 + \delta \left( \frac{5}{6} \nu_i(Ad) + \frac{1}{6} \nu_i(S) \right) \\
+            \nu_i(Ad) &= (1-\delta)(-3) + \delta \left( \frac{5}{6} \nu_i(Ad) + \frac{1}{6} \nu_i(S) \right) \\
+            &\geq (1-\delta)(-4) + \delta \left( \frac{5}{6} \nu_i(Ad) + \frac{1}{6} \nu_i(S) \right)	\\
+            \nu_i(S) &= (1-\delta) 0 + \delta \nu_i(S)
+        \end{align*}
+        $$\Rightarrow \delta \geq \frac{2}{5}$$
+    \end{small}
 }
-\end{frame}
 
-\begin{frame}{Take home message \#}
-\metroset{block=fill}
-    \begin{block}{Take-home-message \#}
-        A {\color{green}repeated game with complete information} is a game where every players know the current state of nature.
+\begin{frame}{Take home message \#5}
+    \metroset{block=fill}
+    \begin{block}{Take-home-message \#5}
+        A \textbf{repeated game with complete information} is a game where {\color{green}
+        every players know the current state of nature}.
         
-        A {\color{green}stationary strategy} of a game with complete state information describe the fact that players will play a certain move with probability 1 at in function of the state.
+        A \textbf{stationary strategy} is a strategy that {\color{green}only depends on the current
+        state of nature}.
         
-        We can observe that some strategies are not stationary at a first sight. But if the players have a $\delta$ big enough, a strategy can become stationary (Cf. grim strategy).
+        Many strategies that do not appear stationary at first sight can be made stationary in a equivalent
+        model with a larger state space.
     \end{block}
-
 \end{frame}
