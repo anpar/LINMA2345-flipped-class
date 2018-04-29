@@ -62,48 +62,54 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}{Definition : Game with complete state information}
+\begin{frame}{Game with complete state information: definition}
+    \metroset{block=fill}
+    \begin{block}{Definition}
+        A repeated game $\Gamma^r = (N,\Theta, (D_i,S_i,u_i)_{i\in N},q,p)$ has
+        \textbf{complete state information} if, at every round, every player knows
+        the current state of nature. That is, there is a function
+        $\omega_i:S_i \rightarrow \Theta$ known by each player such that
+        \begin{equation*}
+            p(s,\hat{\theta} | d,\theta) = 0 \text{ if } \hat{\theta} \neq \omega_i(s_i)
+        \end{equation*}
+        $\forall s \in S, \forall \theta, \hat{\theta} \in \Theta, \forall d \in D$.
+        So the signal $s_i$ can never occur unless the current state is $\omega(s_i)$.
+    \end{block}
 
-\metroset{block=fill}
-\begin{block}{Definition}
-A repeated game $\Gamma^r = (N,\Theta, (D_i,S_i,u_i)_{i\in N},q,p)$ has {\color{green}complete state information} if, at every round, every player knows the current state of nature. That is, there is a function $\omega_i:S_i \rightarrow \Theta$ know by each player such that:
-\begin{equation*}
-    \forall s \in S, \forall \theta, \hat{\theta} \in \Theta, \forall d \in D : p(s,\hat{\theta} | d,\theta) = 0 \text{ if } \hat{\theta} \neq \omega_i(s_i)
-\end{equation*}
-So the signal $s_i$ can never occur unless the current state is $\omega(s_i)$
-\end{block}
-
-\pause
-\textbf{\color{green}Is the prisoner's dilemma a game with complete state information?}
-\pause
-
-For the prisoner's dilemma, if we assume that \alert{players make decision based only on the last move of their opponent}. We have four different state : $\Theta = \{([C,c]), ([C,d]), ([D,c]), ([D,d])\}$
-
+    \pause
+    \textbf{{\color{green}Is the example of the Prisoner's Dilemma with the dice roll a game
+    with complete state information?}} \\
+    \pause
+    Yes, each player knows whether the game is \textit{active} or \textit{stopped}.
 \end{frame}
 
-\begin{frame}{Definition : stationary}
+\begin{frame}{Stationarity}
+    \metroset{block=fill}
+    \begin{block}{Definition}
+        In a repeated game, a game is said to be \textbf{stationary} iff the move probability
+        depends only on the current state. That is there is a function $\tau_i : \Theta
+        \rightarrow \Delta(D_i)$ such that:
+        \begin{equation*}
+	        \sigma_i^{[k]}(\cdot | s) = \tau_i(\cdot | \omega_i(s_i^{[k]}))
+        \end{equation*}
+        $\forall k, \forall s \in (S)^{\times k}$.
+    \end{block}
 
-\metroset{block=fill}
-\begin{block}{definition}
-In a repeated game, a game is said to be {\color{green}stationary} iff the move probability depends only on the current state. That is there is a function $\tau_i : \Theta \rightarrow \Delta(D_i)$ such that:
-\begin{equation*}
-	\forall k, \forall s \in (S)^{\times k} : \sigma_i^{[k]}(\cdot | s) = \tau_i(\cdot | \omega_i(s_i^{[k]}))
-\end{equation*}
-\end{block}
-
-\pause
-\textbf{\color{green}Is the grim strategy a stationary strategy?}
-\pause
-
-For the prisoner's dilemma, a strategy is said to be stationary, if there is only one move possible for the player at each state $\theta$. The \textbf{grim} strategy depends on past move, and not on the actual state.
+    \pause
+    \textbf{{\color{green}Is the Grim strategy proposed earlier stationary?}} \\
+    \pause
+    The Grim strategy \textbf{depends on past move} and not on the actual state. It
+    is not stationnary.
+\end{frame}
 
 \note{
 	Explain that this definition is only for game with complete state information
 	
-	Il faut connaître l'état pour etre stationnaire, si on ne connait pas l'état on ne pourra pas être stationnaire.
+	Il faut connaître l'état pour etre stationnaire, si on ne connait pas l'état on
+    ne pourra pas être stationnaire.
 }
-\end{frame}
 
+\begin{comment}
 \begin{frame}{Small example to understand complete state information}
 \textit{Consider the prisoner's dilemma game in a setting where player make decision based only on the last move of they adversary.} \note{This is contrary to decision theory to make this assumption. Some strategies can still be analysed in that setting. (tit-for-tat)}
 
@@ -124,6 +130,7 @@ If both player play the \textbf{tit-for-tat} strategy. {\color{green} We can rep
 	\end{itemize}
 \end{minipage}
 \end{frame}
+\end{comment}
 
 \begin{frame}{How to analyse a game with complete state information ?}
 \textbf{Goal of the analyse:} Determine if the game is worth or not .
