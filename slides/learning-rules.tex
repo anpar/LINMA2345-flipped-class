@@ -1,34 +1,51 @@
-\begin{frame}{Learning rules}
-    \textbf{Learning strategy}
-    \begin{itemize}
-        \item Use of previous information to improve its behavior
-        \item Strategies that as they unfold draw interesting inferences or use accumulate experience in an interesting way
-        \item Two types of learning will be covered: \textbf{Fictitious play} and \textbf{No-regret playing}
-    \end{itemize}
+\begin{frame}{Learning strategy}
+    \begin{exampleblock}{What is a learning strategy?}
+        Learning strategies are strategies that
+        \begin{itemize}
+            \item use previous information to improve its behavior
+            \item as they unfold \textbf{draw interesting inferences or use accumulate experience
+            in an interesting way}
+        \end{itemize}
+    \end{exampleblock}
+
+    \vspace{0.5cm}
+    \begin{block}{Tow learning strategies today}
+        \begin{enumerate}
+            \item \textit{Fictitious play}
+            \item \textit{No-regret playing}
+        \end{enumerate}
+    \end{block}
 \end{frame}
 
 \begin{frame}{Fictitious play}
-    \textbf{Fictitious play}
-    \begin{itemize}
-        \item One of the earliest learning rules 
-        \item Instance of model-based learning where learner maintains belief about opponent
-        \item Assumes that opponent is playing mixed strategy given by empirical distribution of opponent’s previous actions
-        \item Doesn't necessarily converge
-    \end{itemize}
+    \begin{block}{Fictitious play}
+        \begin{itemize}
+            \item Introduced by \textsc{Brown} at RAND (again) in 1949 as an explanation to Nash
+            equilibrium
+            \item Instance of \textbf{model-based} learning where learner maintains belief about opponent
+            \item Assumes that opponent is playing mixed strategy given by empirical distribution of
+            opponent’s previous actions
+            \item Doesn't necessarily converge
+        \end{itemize}
+    \end{block}
 \end{frame}
 
-\begin{frame}{Fictitious play}
+\begin{frame}{Fictitious play: algorithm}
     \begin{algorithm}[H]
-         Initialize beliefs about the opponent strategy\;
          \While{true}{
-            Play a best response to the assessed strategy of the opponent\\
-            Observe the opponent’s actual play and update beliefs accordingly\\
+            \If{beliefs about the opponent strategy is empty}{
+                play and arbitrary (not necessarily rational) strategy 
+            }
+            \Else{
+                Play a best response to the assessed strategy of the opponent
+            }
+            Observe the opponent’s actual play and update beliefs accordingly
          }
     \caption{Fictitious play algorithm}
     \end{algorithm}
 \end{frame}
 
-\begin{frame}{Fictitious Play}
+\begin{frame}{Fictitious Play: example (1)}
     \begin{exampleblock}{Example}
         Consider the following game.
         \begin{table}
@@ -38,23 +55,21 @@
                 {\color{green}U}    & \payoff{3}{3}   & \payoff{0}{~0} \\
                 {\color{green}D}    & \payoff{~4}{0}    & \payoff{1}{1} 
             \end{tabular}
-            \caption{Example}
+            \caption{Normal form game used in the Fictitious play example. The only
+            Nash Equilibrium of this game us ({\color{green}D}, {\color{red}r}).}
         \end{table}
     \end{exampleblock}
 \end{frame}
 
-
-
-\begin{frame}{Fictitious Play}
+\begin{frame}{Fictitious Play: example (2)}
     \begin{exampleblock}{Let's use the following notations}
         \begin{itemize}
-            \item $\nu_i^t$:belief of player $i$ at turn $t$
-            \item $\mu_i^t$:expected play of player $i$ at turn $t$
-            \item $\sigma_i^t$:strategy of player $i$ at turn $t+1$
+            \item $\nu_i^t$: belief of player $i$ at turn $t$
+            \item $\mu_i^t$: expected play of player $i$ at turn $t$
+            \item $\sigma_i^t$: strategy of player $i$ at turn $t+1$
         \end{itemize}
     \end{exampleblock}
 \end{frame}
-
 
 \begin{frame}{Fictitious Play}
     \begin{exampleblock}{1st turn}
@@ -168,49 +183,68 @@
 \end{frame}
 
 
-\begin{frame}{Fictitious play}
-    \begin{block}{Convergence and Nash equilibrium}
-        If the empirical distribution of each player converges in fictitious play, then it converges to a Nash equilibrium
+\begin{frame}{Convergence of Fictitious play}
+    \metroset{block=fill}
+
+    \begin{block}{Theorem}
+        If the empirical distribution of each player's strategies converges
+        in fictitious play, then \textbf{it converges to a Nash equilibrium}.
     \end{block}
+
     \begin{block}{Sufficient conditions for convergence}
+        Each of the following are a sufficient conditions for the empirical
+        frequencies of play to converge in fictitious play
         \begin{itemize}
-            \item Zero-sum games
-            \item Game solvable by iterated elimination of strictly dominated strategies
+            \item the game is zero-sum;
+            \item the game is solvable by iterated elimination of strictly dominated strategies
+            \item {\color{gray}the game is a potential game}
+            \item {\color{gray}the game is $2\times n$ and has generic payoffs}
         \end{itemize}
     \end{block}
 \end{frame}
 
-
 \begin{frame}{No-regret playing}
-    \textbf{Regret}\\
-    \textit{Let $\alpha^t$ be the average per-period reward the agent received up to time $t$ and $\alpha^t(d)$ the average per-period reward the agent would have received by playing strategy $d$.}\\
-    \textit{The regret an agent experiences at time $t$ for not having played $d$ is $R^t(d)=\alpha^t(d)-\alpha^t$}
-\end{frame}
-
-\begin{frame}{No-regret playing}
-    \textbf{No-regret learning rule}\\
-    \textit{A learning rule exhibits \textbf{no regret} if it guarantees with high probability that the agent will not experience any positive regret}
-    \begin{center}
-        $P([\liminf R^t(d)]\leq 0)=1$
-    \end{center}
-\end{frame}
-
-\begin{frame}{No-regret playing}
-    \textbf{Example of a no-regret strategy: Regret matching}\\
-    \begin{itemize}
-        \item At each time step each action is chosen with probability consistent to its regret
-        \item The probability of playing strategy $d$ at timestep $t+1$ is equal to:
-        \[
-            \sigma_i^{t+1}(d)= \frac{R^t(d)}{\sum_{d'\in D_i} R^t(d')}
-        \]
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Take-home message \#3}
+    Let $\alpha^t$ be the average per-period reward the agent received up to time $t$
+    and $\alpha^t(d)$ the average per-period reward the agent would have received by playing
+    strategy $d$. \\
+    
     \metroset{block=fill}
-    \begin{block}{Take-home message \#3}
-        Fictitious play algorithm: assume that opponent play mixed strategy and respond by best pure strategy\\
-        No-regret playing: $P([\liminf R^t(d)]\leq 0)=1$\\
-        Regret matching: play mixed strategy with probability consistent with regret
+    \begin{block}{Regret}
+        The regret an agent experiences at time $t$ for not having played $d$ is
+        $$R^t(d) = \alpha^t(d) - \alpha^t.$$
+    \end{block}
+\end{frame}
+
+\begin{frame}{No-regret playing}
+    \metroset{block=fill}
+    \begin{block}{No-regret playing}
+        A learning rule exhibits \textbf{no regret} if it guarantees with high probability that the
+        agent will not experience any positive regret
+        $$P([\liminf R^t(d)] \leq 0) = 1.$$
+    \end{block}
+\end{frame}
+
+\begin{frame}{Example: regret matching}
+    \begin{block}{Regret matching}
+        \begin{itemize}
+            \item At each time step each action is chosen with probability consistent to its regret
+            \item The probability of playing strategy $d$ at time-step $t+1$ is equal to:
+            \[
+                \sigma_i^{t+1}(d)= \frac{R^t(d)}{\sum_{d'\in D_i} R^t(d')}.
+            \]
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Take-home message \#8}
+    \metroset{block=fill}
+    \begin{block}{Take-home message \#8}
+        \begin{itemize}
+            \item Learning strategies can be \textbf{model-based} (e.g. fictitious play) or not.
+            \item In fictitious play, {\color{green}strategies empirical distribution converges to a
+            Nash equilibrium} (if it converges).
+            \item No-regret playing: $P([\liminf R^t(d)] \leq 0) = 1$.
+            \item Regret matching: play mixed strategy with probability consistent with regret.
+        \end{itemize}
     \end{block}
 \end{frame}
