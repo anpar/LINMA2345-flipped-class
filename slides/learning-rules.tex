@@ -34,12 +34,12 @@
     \begin{algorithm}[H]
          \While{true}{
             \If{beliefs about the opponent strategy is empty}{
-                play and arbitrary (not necessarily rational) strategy 
+                play an arbitrary (not necessarily rational) strategy 
             }
             \Else{
-                Play a best response to the assessed strategy of the opponent
+                play a best response to the assessed strategy of the opponent
             }
-            Observe the opponent’s actual play and update beliefs accordingly
+            observe the opponent’s actual play and update beliefs accordingly
          }
     \caption{Fictitious play algorithm}
     \end{algorithm}
@@ -228,10 +228,11 @@
     \begin{block}{Regret matching}
         \begin{itemize}
             \item At each time step each action is chosen with probability consistent to its regret
-            \item The probability of playing strategy $d$ at time-step $t+1$ is equal to:
+            \item The probability of playing strategy $d$ at time-step $t+1$ is equal to
             \[
                 \sigma_i^{t+1}(d)= \frac{R^t(d)}{\sum_{d'\in D_i} R^t(d')}.
             \]
+            \item {\color{green}Converges to a correlated equilibrium}.
         \end{itemize}
     \end{block}
 \end{frame}
@@ -245,6 +246,7 @@
             Nash equilibrium} (if it converges).
             \item No-regret playing: $P([\liminf R^t(d)] \leq 0) = 1$.
             \item Regret matching: play mixed strategy with probability consistent with regret.
+            {\color{green}Converges to a correlated equilibrium}.
         \end{itemize}
     \end{block}
 \end{frame}
