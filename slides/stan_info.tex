@@ -69,7 +69,7 @@
         possible state of nature
 		$$|\Theta| = 1,$$
         the players know all of each other's past moves
-        $$S_i = \bigtimes_{j \in N} D_j \quad \forall,$$
+        $$S_i = \bigtimes_{j \in N} D_j \quad \forall i$$
         and
 		$$p(d,...,d,\theta | d, \theta) = 1 \quad \forall d \in D.$$
     \end{block}
@@ -81,7 +81,7 @@
         Consider the game of Chicken in normal form
         \begin{table}
             \begin{tabular}{c|cc}
-                & {\color{red}$a_2$}    & {\color{red}$b2$} \\
+                & {\color{red}$a_2$}    & {\color{red}$b_2$} \\
                 \hline
                 {\color{green}$a_1$}    & \payoff{4}{4}   & \payoff{1}{6} \\
                 {\color{green}$b_1$}    & \payoff{6}{1}    & \payoff{-3}{-3} 
@@ -97,13 +97,14 @@
     }
 \end{frame}
 
-\begin{frame}{Equilibrium of the single shot game}
-\textbf{Analyze of the game}
+\begin{frame}{Equilibrium of the game}
+\textbf{Equilibrium analysis}
 
 \begin{itemize}
 	\pause
-	\item Nash equilibrium : (1,6) (6,1)
+	\item Single shot case
 	\begin{itemize}
+		\item Pure strategie : Nash equilibrium : $(1,6) \quad (6,1)$
 		\item Randomized equilibrium : $u_i = 0.5\cdot4 + 0.5 \cdot (6+1-3) = 3$
 		\item Correlated equilibrium : $u_i = 0.5\cdot4 + 0.25 \cdot (6+1) =  3.75$
 	\end{itemize}

@@ -86,7 +86,7 @@
 \begin{frame}{Stationary strategies}
     \metroset{block=fill}
     \begin{block}{Definition}
-        In a repeated game, a game is said to be \textbf{stationary} iff the move probability
+        In a repeated game, a strategy is said to be \textbf{stationary} iff the move probability
         depends only on the current state. That is there is a function $\tau_i : \Theta
         \rightarrow \Delta(D_i)$ such that:
         \begin{equation*}
@@ -162,16 +162,16 @@
     \end{itemize}
 
     \begin{small}
-        \begin{eqnarray}
-            Y_i(\tau, d_i, \nu_i, \theta, \delta) &=&
-            \sum_{d_i \in D_i} \left( \prod_{j \in N-i} \tau_j(d_j|\theta) \right) \nonumber \\
-            && \cdot  \left(  (1-\delta) u_i(d,\theta) + \delta \sum_{\hat{\theta} \in \Theta}
-            \sum_{s \in S} p(s,\hat{\theta} |d,\theta) \nu_i (\hat{\theta}) \right)
-        \end{eqnarray}  
+        \begin{equation}
+            Y_i(\tau, d_i, \nu_i, \theta, \delta) =
+            \sum_{d_{-i} \in D_{-i}} \tau_{-i}(d_{-i}|\theta)
+            \cdot  \left(  (1-\delta) u_i(d,\theta) + \delta \sum_{\hat{\theta} \in \Theta}
+           	p(\hat{\theta} |d,\theta) \nu_i (\hat{\theta}) \right)
+        \end{equation}  
     \end{small}
 \end{frame}
 
-\begin{frame}{Stationary Equilibria (2)}
+\begin{frame}{Stationary Equilibria (2)} 
     When every players plays according to $\tau$ :
 
     \begin{small}
